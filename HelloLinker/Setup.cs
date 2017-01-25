@@ -19,9 +19,15 @@ namespace HelloLinker
 
         protected override IMvvmApplication CreateApplication()
         {
-            return new Core.App();
+            return new Core.App(LoadModules);
         }
 
         #endregion
+
+        private static void LoadModules(MugenMvvmToolkit.Interfaces.Models.IModuleContext context)
+        {
+            new LightAndroidDataBindingModule().Load(context);
+            new MugenMvvmToolkit.Android.Modules.AndroidInitializationModule().Load(context);
+        }
     }
 }
